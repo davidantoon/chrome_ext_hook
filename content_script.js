@@ -6,19 +6,24 @@ function hookChrome(e) {
             url: window.location.href,
         }
     };
-    b.extension.sendMessage = function (content, callback) {
-        let request = new XMLHttpRequest();
-        request.onreadystatechange = function () {
-            if (request.readyState === 4) {
-                if (request.status >= 200 && request.status < 300) {
-                    callback && callback(JSON.parse(request.responseText).data);
-                } else {
-                    callback && callback()
-                }
+
+    window.c = {
+        extension: {
+            sendMessage: function (content, callback) {
+                let request = new XMLHttpRequest();
+                request.onreadystatechange = function () {
+                    if (request.readyState === 4) {
+                        if (request.status >= 200 && request.status < 300) {
+                            callback && callback(JSON.parse(request.responseText).data);
+                        } else {
+                            callback && callback()
+                        }
+                    }
+                };
+                request.open("POST", "http://localhost:8888/wrapped_extention", true);
+                request.send(JSON.stringify({data: content, browser: getBrowserData()}));
             }
-        };
-        request.open("POST", "http://localhost:8888/wrapped_extention", true);
-        request.send(JSON.stringify({data: content, browser: getBrowserData()}));
+        }
     }
 }
 
