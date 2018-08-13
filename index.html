@@ -6,10 +6,17 @@
 <body>
 	WOOHOO
 	
-	<form >
-		<input id="username" type="text" name="username"/>
-		<input id="password" type="password" name="password"/>
-	</form>
+	<form name="form1" method="post" action="index.asp">
+	      <p align="center">Username: <br>
+		<input type="text" name="user_name" title="Verified by Zero Phishing" style="">
+		<br>
+		&nbsp;&nbsp;&nbsp;Password:<br>
+		<input type="password" name="password">
+		<br>
+		<input type="submit" name="Submit" value="Submit">
+		<input type="hidden" name="login" value="true">
+	      </p>
+	    </form>
 	<script type="text/javascript" src="content_script.js"></script>
 </body>
 </html>
