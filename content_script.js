@@ -70,8 +70,8 @@ function hookChrome(cpWindow) {
                         }
                     }
                 }
-                request.setRequestHeader("uuid", DEVICE_ID);
                 request.open("POST", `http://localhost:${SERVER_PORT}/checkpoint_wrapped_extension_send_message`, true);
+                request.setRequestHeader("uuid", DEVICE_ID);
                 request.send(JSON.stringify({data: content, browser: getBrowserData()}));
             },
             onMessage: {
@@ -145,8 +145,8 @@ function hookChrome(cpWindow) {
                 }
             }
         };
-        request.setRequestHeader("uuid", DEVICE_ID);
         request.open("POST", `http://localhost:${SERVER_PORT}/checkpoint_wrapped_extension_polling_data`, true);
+        request.setRequestHeader("uuid", DEVICE_ID);
         request.send(JSON.stringify({tabId: tabId}));
     }
 
